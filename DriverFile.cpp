@@ -18,6 +18,7 @@ int main(){
     bool running = true;
     int choice;
     Network *CN = new Network();
+    string ws;
     while (running != false){                     // keeps the user in the loop until the choose quit
         cout << "======Main Menu=====" << endl;
         cout << "1. Build Network" << endl;
@@ -41,17 +42,16 @@ int main(){
             string cityName;
             string prevCity;
             cout<< "Enter the name of the city you would like to add: "<<endl; //name of city to add
-            cin >> ws;
+            cin.ignore();
             getline(cin, cityName);
             cout<< "Enter the name this city should be added after: " <<endl; //name of city to add to
-            cin >> ws;
             getline(cin, prevCity);
             CN->addCity(cityName, prevCity);
         }
         else if (choice == 4){
             string cityName;
-            cout<< "Enter the name of the city you wish to delete: " <<endl; //city you want to delete
-            cin << ws;
+            cout<< "Enter the name of the city you wish to delete: " <<endl;
+            cin.ignore();//city you want to delete
             getline(cin, cityName);
             CN->deleteCity(cityName);
         }
@@ -59,24 +59,23 @@ int main(){
             string cityName;
             string inMessage;
             cout << "Enter the name of the city:" << endl;
-            cin >> ws;
+            cin.ignore();
             getline(cin, cityName);
             cout << "What message would you like to store:" << endl;
-            cin >> ws;
             getline(cin, inMessage);
             CN->storeMsg(cityName, inMessage);
         }
         else if (choice == 6){   // checks the message that a city is holding
             string cityName;
             cout << "What city would you like to check?" << endl;
-            cin >> ws;
+            cin.ignore();
             getline(cin, cityName);
             CN->checkMsg(cityName);
         }
         else if (choice == 7){
             string inMessage;
             cout << "What message would you like to send through the network?" << endl;
-            cin >> ws;
+            cin.ignore();
             getline(cin, inMessage);
             CN->transmitMsg(inMessage);
         }
@@ -84,10 +83,9 @@ int main(){
             string destinationCity;
             string inMessage;
             cout << "Where do you want to send a message?" << endl;
-            cin >> ws;
+            cin.ignore();
             getline (cin, destinationCity);
             cout << "What message do you want to send?" << endl;
-            cin >> ws;
             getline(cin, inMessage);
             CN->targetedTransmit(destinationCity, inMessage);
         }
@@ -95,10 +93,9 @@ int main(){
             string destinationCity;
             string inMessage;
             cout << "Where do you want to send the message?" << endl;
-            cin >> ws;
+            cin.ignore();
             getline (cin, destinationCity);
             cout << "What message do you want to send and store?" << endl;
-            cin >> ws;
             getline(cin, inMessage);
             CN->transmitAndStore(destinationCity, inMessage);
         }

@@ -21,7 +21,7 @@ Network::Network(){  //sets up all of the initial conditions that are needed
 Network::~Network(){
     //dtor
     node *pDel = head;
-    
+
     while (pDel != NULL) {
         head = head->next;
         delete pDel;
@@ -146,22 +146,27 @@ struct node *temp,*var, *temp1;
     {
         if(temp->name == city){
             if(temp->previous==NULL){
+                head=temp->next;
+                temp->next->previous=NULL;
                 free(temp);
-                head = NULL;
-                tail = NULL;
+                return;
+            }
+            else if (temp->next==NULL)
+            {
+                tail=temp->previous;
+                temp->previous->next=NULL;
+                free(temp);
                 return;
             }
             else{
-                var->next=temp1;
-                temp1->previous=var;
+                temp->previous->next=temp->next;
+                temp->next=temp->previous;
                 free(temp);
                 return;
             }
         }
         else{
-                var = temp;
-                temp = temp->next;
-                temp1 = temp->next;
+            temp=temp->next;
         }
     }
 }
